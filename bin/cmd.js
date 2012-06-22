@@ -28,18 +28,6 @@ if (argv.d || argv.decompile) {
     return;
 }
 
-if (argv.i || argv.interactive) {
-    var ctx = {
-        require : require,
-        console : console,
-        process : process,
-    };
-    repl.start('> ', null, function (cmd, _, _, cb) {
-        var n = cmd.replace(/^\(|\)$/g, '');
-        number.run(n, cb);
-    });
-}
-
 if (argv.c || argv.compile) {
     var file = argv.c || argv.compile || '-';
     readFile(file, function (err, src) {
@@ -52,7 +40,7 @@ if (argv.c || argv.compile) {
     return;
 }
 
-if (true || argv.r || argv.run) {
+if (argv.r || argv.run || argv._[0]) {
     var file = argv.r || argv.run || argv._[0] || '-';
     var ctx = {
         require : function (name) {
@@ -71,6 +59,18 @@ if (true || argv.r || argv.run) {
         });
     });
     return;
+}
+
+if (true || argv.i || argv.interactive) {
+    var ctx = {
+        require : require,
+        console : console,
+        process : process,
+    };
+    repl.start('> ', null, function (cmd, _, _, cb) {
+        var n = cmd.replace(/^\(|\)$/g, '');
+        number.run(n, cb);
+    });
 }
 
 function readFile (file, cb) {
