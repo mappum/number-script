@@ -1,3 +1,6 @@
+// This is all so dreadfully ugly,
+// it should be all be rewritten in numberscript at some point.
+
 var bignum = require('bignum');
 var vm = require('vm');
 
