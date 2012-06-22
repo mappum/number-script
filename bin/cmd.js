@@ -16,12 +16,12 @@ if (argv.v || argv.version) {
 var outfile = argv.o || argv.output || '-';
 
 if (argv.d || argv.decompile) {
-    var file = argv.c || argv.compile || '-';
+    var file = argv.d || argv.decompile || '-';
     readFile(file, function (err, src) {
         if (err) console.error(err)
         else number.decompile(src, function (err, n) {
             if (err) console.error(err)
-            else writeFile(outfile, n)
+            else writeFile(outfile, n + '\n')
         });
     });
     return;
@@ -53,7 +53,10 @@ if (argv.c || argv.compile) {
 if (true || argv.r || argv.run) {
     var file = argv.r || argv.run || argv._[0] || '-';
     var ctx = {
-        require : require,
+        require : function (name) {
+            if (name === 'number-script') return number
+            else return require(name)
+        },
         console : console,
         process : process,
         __filename : file,
@@ -78,7 +81,7 @@ function readFile (file, cb) {
         process.stdin.resume();
     }
     else {
-        fs.readFile(file, function (err, src) {
+        fs.readFile(file, 'utf8', function (err, src) {
             if (err) cb(err)
             else cb(null, src)
         });
