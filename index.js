@@ -41,7 +41,7 @@ function compile (n, cb) {
         js = String(n.toBuffer());
     }
     try {
-        vm.runInNewContext('(function () { ' + js + ' })');
+        Function(js)
     }
     catch (e) {
         if (cb) cb('Invalid number.')
