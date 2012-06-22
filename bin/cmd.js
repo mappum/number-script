@@ -14,10 +14,10 @@ if (argv.v || argv.version) {
     var v = require('../package.json').version;
     return console.log('NumberScript version ' + v);
 }
-var outfile = argv.o || argv.output || '-';
+var outfile = argv.o || argv.output;
 
 if (argv.d || argv.decompile) {
-    var file = argv.d || argv.decompile || '-';
+    var file = argv.d || argv.decompile;
     readFile(file, function (err, src) {
         if (err) console.error(err)
         else number.decompile(src, function (err, n) {
@@ -29,7 +29,7 @@ if (argv.d || argv.decompile) {
 }
 
 if (argv.c || argv.compile) {
-    var file = argv.c || argv.compile || '-';
+    var file = argv.c || argv.compile;
     readFile(file, function (err, src) {
         if (err) console.error(err)
         else number.compile(src, function (err, c) {
@@ -74,7 +74,7 @@ if (true || argv.i || argv.interactive) {
 }
 
 function readFile (file, cb) {
-    if (file === '-') {
+    if (file === true || file === '-') {
         var data = '';
         process.stdin.on('data', function (buf) { data += buf });
         process.stdin.on('end', function () {
@@ -91,7 +91,7 @@ function readFile (file, cb) {
 }
 
 function writeFile (file, src) {
-    if (file === '-') {
+    if (!file || file === true || file === '-') {
         process.stdout.write(src);
     }
     else fs.writeFile(file, src);

@@ -48,6 +48,18 @@ $ number-script hello.number
 hello world
 ```
 
+You can use NumberScript interactively too. Just type `number-script`:
+
+```
+$ number-script
+> 3287859
+5
+> 41568140212747864206438434
+'beep boop'
+> 12345
+9
+```
+
 Valid numbers will compile to javascript. 
 Fortunately, infinitely many such numbers exist.
 Unfortunately, infinitely many numbers will not compile to javascript.
@@ -108,3 +120,8 @@ Usage: number-script [options] path/to/script.number
   -h, --help         display this message
   
 ```
+
+license
+=======
+
+MIT
