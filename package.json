@@ -1,0 +1,43 @@
+{
+    "name" : "number-script",
+    "version" : "0.0.0",
+    "description" : "Ordinal JavaScript",
+    "main" : "index.js",
+    "bin" : {
+        "number-script" : "bin/cmd.js"
+    },
+    "directories" : {
+        "example" : "example",
+        "test" : "test"
+    },
+    "dependencies" : {
+        "optimist" : "~0.3.4",
+        "bignum" : "~0.4.1"
+    },
+    "devDependencies" : {
+        "tap" : "~0.2.5"
+    },
+    "scripts" : {
+        "test" : "tap test/*.js"
+    },
+    "repository" : {
+        "type" : "git",
+        "url" : "git://github.com/substack/number-script.git"
+    },
+    "homepage" : "https://github.com/substack/number-script",
+    "keywords" : [
+        "javascript",
+        "language",
+        "numberscript",
+        "compiler",
+        "ordinal",
+        "integral"
+    ],
+    "author" : {
+        "name" : "James Halliday",
+        "email" : "mail@substack.net",
+        "url" : "http://substack.net"
+    },
+    "license" : "MIT",
+    "engine" : { "node" : ">=0.6" }
+}

@@ -1,0 +1,10 @@
+
+Usage: number-script [options] path/to/script.number
+
+  -c, --compile      compile to JavaScript
+  -d, --decompile    decompile JavaScript back to NumberScript
+  -i, --interactive  run an interactive NumberScript REPL
+  -o, --output       set a file to output to ("-" goes to stdout)
+  -v, --version      display NumberScript version
+  -h, --help         display this message
+  
