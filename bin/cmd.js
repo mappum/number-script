@@ -2,6 +2,7 @@
 var fs = require('fs');
 var path = require('path');
 var argv = require('optimist').argv;
+var repl = require('repl');
 var number = require('../');
 
 if (argv.h || argv.help) {
@@ -33,7 +34,8 @@ if (argv.i || argv.interactive) {
         console : console,
         process : process,
     };
-    repl.start(function (n, cb) {
+    repl.start('> ', null, function (cmd, _, _, cb) {
+        var n = cmd.replace(/^\(|\)$/g, '');
         number.run(n, cb);
     });
 }
