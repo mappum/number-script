@@ -6,7 +6,7 @@ var vm = require('vm');
 
 exports = module.exports = run;
 exports.run = run;
-function run (n, ctx, cb) {
+function run (n, ctx, cb, base) {
     if (typeof ctx === 'function') {
         cb = ctx;
         ctx = {};
@@ -18,11 +18,11 @@ function run (n, ctx, cb) {
         }
         catch (err) { return cb(err) };
         cb(null, res);
-    });
+    }, base);
 }
 
 exports.compile = compile;
-function compile (n, cb) {
+function compile (n, cb, base) {
     var js;
     if (Buffer.isBuffer(n)) {
         var xs = [];
@@ -35,7 +35,7 @@ function compile (n, cb) {
         js = String(bignum.fromBuffer(buf).toBuffer());
     }
     else if (typeof n === 'string') {
-        js = String(bignum(n.replace(/\s+/g, '')).toBuffer());
+        js = String(bignum(n.replace(/\s+/g, ''), base).toBuffer());
     }
     else if (n && typeof n === 'object' && n.toBuffer) {
         js = String(n.toBuffer());

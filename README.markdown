@@ -118,6 +118,8 @@ Usage: number-script [options] path/to/script.number
   -o, --output       set a file to output to ("-" goes to stdout)
   -v, --version      display NumberScript version
   -h, --help         display this message
+
+  -b, --base         specifies the base to use for the code, defaults to 10
   
 ```
 

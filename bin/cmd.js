@@ -16,6 +16,11 @@ if (argv.v || argv.version) {
 }
 var outfile = argv.o || argv.output;
 
+var base;
+if (argv.b || argv.base) {
+    base = argv.b || argv.base;
+}
+
 if (argv.d || argv.decompile) {
     var file = argv.d || argv.decompile;
     readFile(file, function (err, src) {
@@ -35,7 +40,7 @@ if (argv.c || argv.compile) {
         else number.compile(src, function (err, c) {
             if (err) console.error(err)
             else writeFile(outfile, c)
-        });
+        }, base);
     });
     return;
 }
@@ -56,7 +61,7 @@ if (argv.r || argv.run || argv._[0]) {
         if (err) console.error(err)
         else number.run(src, ctx, function (err) {
             if (err) console.error(err)
-        });
+        }, base);
     });
     return;
 }
@@ -69,7 +74,7 @@ if (true || argv.i || argv.interactive) {
     };
     repl.start('> ', null, function (cmd, _, _, cb) {
         var n = cmd.replace(/^\(|\)$/g, '');
-        number.run(n, cb);
+        number.run(n, cb, null, base);
     });
 }
 
